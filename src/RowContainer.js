@@ -1,36 +1,40 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import Row from "./Row";
 
-const initialData = [
+const rowData = [
   { name: "Contract", description: "1 doc" },
   { name: "Agreement", description: "2 docs" },
   { name: "Addendum", description: "4 docs" }
 ];
 
-function RowContainer() {
-  const [rowData, setRowData] = useState(initialData);
+class RowContainer extends Component {
+  state = {
+    rowData
+  };
 
-  const handleClick = selectedIdx => {
-    const newRowData = rowData.map((row, idx) => ({
+  handleClick = selectedIdx => {
+    const newRowData = this.state.rowData.map((row, idx) => ({
       ...row,
       isSelected: selectedIdx === idx
     }));
-    setRowData(newRowData);
+    this.setState({ rowData: newRowData });
   };
 
-  return (
-    <div>
-      {rowData.map((row, idx) => (
-        <Row
-          key={idx}
-          name={row.name}
-          description={row.description}
-          isSelected={row.isSelected}
-          onClick={() => handleClick(idx)}
-        />
-      ))}
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        {this.state.rowData.map((row, idx) => (
+          <Row
+            key={idx}
+            name={row.name}
+            description={row.description}
+            isSelected={row.isSelected}
+            onClick={() => this.handleClick(idx)}
+          />
+        ))}
+      </div>
+    );
+  }
 }
 
 export default RowContainer;
