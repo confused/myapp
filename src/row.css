@@ -1,0 +1,11 @@
+.row {
+    background: #eaeaea;
+    border-radius: 3px;
+    padding: 15px;
+    margin: 10px auto;
+    text-align: left;
+    width: 500px;
+}
+.row.selected {
+    background: #c3d2e6;
+}
