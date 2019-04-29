@@ -5,7 +5,7 @@
 .App > * {
   display: inline-block;
   vertical-align: top;
-  margin-right: 20px;
+  margin: 20px;
 }
 
 .App-logo {
