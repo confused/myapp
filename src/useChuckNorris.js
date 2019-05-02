@@ -1,21 +1,20 @@
-import React, { useState, useRef, useEffect } from "react";
-import Row from "./Row";
+import { useState, useEffect } from "react";
 
-const apiUrl = "https://api.chucknorris.io/jokes/search?query=work";
+const apiUrl = "https://api.chucknorris.io/jokes/search?query=";
 
-function useChuckNorris() {
+export default function useChuckNorris(topic) {
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(apiUrl)
+    fetch(apiUrl + topic)
       .then(resp => resp.json())
       .then(json => {
         console.log("got data");
+        setIsLoading(false);
         setData(json.result);
       });
-  }, []);
+  }, [topic]);
 
-  return data;
+  return [isLoading, data];
 }
-
-export default useChuckNorris;

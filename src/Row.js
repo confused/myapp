@@ -14,8 +14,7 @@ function Row({ name, description, isSelected, onClick }) {
 }
 
 Row.propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  name: PropTypes.string,
   isSelected: PropTypes.bool,
   onClick: PropTypes.func,
   newVal: PropTypes.string
